@@ -1,4 +1,5 @@
 const http = require("http");
+const writeToFile = require('./writeWithPromisesAwait');
 var StringDecoder = require("string_decoder").StringDecoder;
 
 const getBody = (req, callback) => {
@@ -58,15 +59,18 @@ const form = () => {
   return form_body;
 };
 
+
 const server = http.createServer((req, res) => {
   console.log("req.method is ", req.method);
   console.log("req.url is ", req.url);
   if (req.method === "POST") {
     getBody(req, (body) => {
       console.log("The body of the post is ", body);
+      
       // here, you can add your own logic
       if (body["item"]) {
         item = body["item"].replace(/\+/g, " ");
+        writeToFile.writer(item);
         list.push(item);
       } else {
         item = "Nothing was entered.";
@@ -81,6 +85,9 @@ const server = http.createServer((req, res) => {
     res.end(form());
   }
 });
+server.on("request", (req) => {  
+  console.log("event received: ", req.method, req.url);  
+});  
 
 server.listen(3000);
 console.log("The server is listening on port 3000.");
