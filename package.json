@@ -1,8 +1,8 @@
 {
    "scripts": {  
         "test": "echo \"Error: no test specified\" && exit 1",  
-        "dev": "nodemon ./01-node-tutorial/answers/prompter.js",  
-        "start": "node ./01-node-tutorial/answers/prompter.js"  
+        "dev": "nodemon ./02-express-tutorial/app.js",  
+        "start": "node ./02-express-tutorial/app.js"  
       },  
   "devDependencies": {
     "nodemon": "^3.1.4"
