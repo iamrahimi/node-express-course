@@ -1,0 +1,11 @@
+function is a common pattern used to simplify error handling in asynchronous route handlers. It allows you to write cleaner code by avoiding the need for repetitive try-catch blocks in each async route handler.
+
+
+const getTask = asyncWrapper(async (req, res, next) => {  
+  const { id: taskID } = req.params;  
+  const task = await Task.findOne({ _id: taskID });  
+  if (!task) {  
+    return res.status(404).json({msg: `No task with id ${TaskID}`});
+  }  
+  res.status(200).json({ task });  
+});  
